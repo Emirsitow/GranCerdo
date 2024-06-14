@@ -1,20 +1,28 @@
-#ifndef FUNCIONESCERDO_H_INCLUDED
+
 #define FUNCIONESCERDO_H_INCLUDED
 #include<time.h>
 #include<cstdlib>
 #include<string>
 #include<string.h>
 
-using namespace std;
+void TiradaDados(int Vec[], int Tam);
+bool ProcesarDados(int Vec[], int Tam, int vecStat, bool *BanderaTresDatos);
+bool hayUnaCaraDistinta(int Vec, int Tam);
+bool sonTodasIgualesEntreSi(int Vec, int Tam);
+bool hayDosCarasIgualesYSonAses(int Vec, int Tam);
+bool ningunaEsAs(int Vec, int Tam);
+bool todasLasCarasSonAses(int Vec, int Tam);
+void Jugar(int vecStat1[], int vecStat2[]);
+void jugarRonda(int vecStat, bool *BanderaTresDatos)
 
-void TiradaDados(int dados[], int n) {
-    for (int i = 0; i < n; i++) {
-        dados[i] = rand() % 6 + 1; // Simula el lanzamiento de un dado (1-6)
-    }
-}
+//void TiradaDados(int dados[], int n) {
+    //for (int i = 0; i < n; i++) {
+       // dados[i] = rand() % 6 + 1; // Simula el lanzamiento de un dado (1-6)
+    //}
+//}
 
-string quienTiraPrimero (Jugador1, Jugador2) {
-	dadosIniciales[2]={}
+string quienTiraPrimero (string Jugador1,string Jugador2) {
+int dadosIniciales[2]={};
 	string jugadorPrimero;
 	srand(time(NULL));
 	int dadoMax = 0;
@@ -60,6 +68,7 @@ void TiradaDados(int Vec[], int Tam){
 		cout<<"Los dados dieron: "<<Vec[i]<<endl;
 	}
 }
+
 bool ProcesarDados(int Vec[], int Tam, int vecStat, bool *BanderaTresDatos){
 	int Trufas=0, Oinks=0;
 	bool SiguienteRonda = true;

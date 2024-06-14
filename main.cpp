@@ -6,10 +6,12 @@
 #include <limits>
 using namespace std;
 
+#include "FuncionesCerdo.h"
+
 
 
 int main(){
-	int opcion=1, quienTiraPrimero, stats1[4]={},  stats2[3]={};
+	int opcion=1, stats1[4]={},  stats2[3]={};
 	// stats = [trufas, oinks, lanzamientos];
 	string Jugador1, Jugador2, jugadorInicial;
 
