@@ -7,13 +7,13 @@
 
 void TiradaDados(int Vec[], int Tam);
 bool ProcesarDados(int Vec[], int Tam, int vecStat, bool *BanderaTresDatos);
-bool hayUnaCaraDistinta(int Vec, int Tam);
-bool sonTodasIgualesEntreSi(int Vec, int Tam);
-bool hayDosCarasIgualesYSonAses(int Vec, int Tam);
-bool ningunaEsAs(int Vec, int Tam);
-bool todasLasCarasSonAses(int Vec, int Tam);
+bool hayUnaCaraDistinta(int Vec[], int Tam);
+bool sonTodasIgualesEntreSi(int Vec[], int Tam);
+bool hayDosCarasIgualesYSonAses(int Vec[], int Tam);
+bool ningunaEsAs(int Vec[], int Tam);
+bool todasLasCarasSonAses(int Vec[], int Tam);
 void Jugar(int vecStat1[], int vecStat2[]);
-void jugarRonda(int vecStat, bool *BanderaTresDatos)
+void jugarRonda(int vecStat[], bool *BanderaTresDatos)
 
 //void TiradaDados(int dados[], int n) {
     //for (int i = 0; i < n; i++) {
@@ -21,7 +21,7 @@ void jugarRonda(int vecStat, bool *BanderaTresDatos)
     //}
 //}
 
-string quienTiraPrimero (string Jugador1,string Jugador2) {
+string quienTiraPrimero (string Jugador1, string Jugador2) {
 int dadosIniciales[2]={};
 	string jugadorPrimero;
 	srand(time(NULL));
@@ -69,40 +69,8 @@ void TiradaDados(int Vec[], int Tam){
 	}
 }
 
-bool ProcesarDados(int Vec[], int Tam, int vecStat, bool *BanderaTresDatos){
-	int Trufas=0, Oinks=0;
-	bool SiguienteRonda = true;
-	bool puedeElegirSiguienteRonda = true;
-	if(hayUnaCaraDistinta(Vec, Tam) && ningunaEsAs(Vec, Tam)) {
 
-	} else if (sonTodasIgualesEntreSi(Vec, Tam) && ningunaEsAs(Vec, Tam)) {
-
-	} else if (hayUnaCaraDistinta(Vec, Tam) && !ningunaEsAs(Vec, Tam)) {
-
-	} else if (((Tam == 2 && sonTodasIgualesEntreSi(Vec, Tam)) || Tam == 3 && hayDosCarasIgualesYSonAses(Vec, Tam))&& todasLasCarasSonAses(Vec, Tam)) {
-
-	} else if (Tam == 3 && sonTodasIgualesEntreSi(Vec, Tam) && todasLasCarasSonAses(Vec, Tam)) {
-
-	}
-	if (puedeElegirSiguienteRonda) {
-		// ver si elegir siguiente ronda o si no se puede
-		// SiguienteRonda...
-	}
-	return SiguienteRonda;
-}
-bool hayUnaCaraDistinta(int Vec, int Tam) {
-	bool esDistinta = Vec[0] != Vec[Tam - 1];
-	if (Tam == 3 && !esDistinta) {
-		for (int i = 0; i < Tam - 1; i++){
-			if(Vec[i] != Vec[i+1]) {
-				esDistinta = true;
-			}
-		}
-	}
-	return esDistinta;
-}
-
-bool sonTodasIgualesEntreSi(int Vec, int Tam) {
+bool sonTodasIgualesEntreSi(int Vec[], int Tam) {
 	bool sonIguales = Vec[0] == Vec[Tam - 1];
 	if (Tam == 3) {
 		for (int i=0; i<Tam-1; i++){
@@ -114,7 +82,7 @@ bool sonTodasIgualesEntreSi(int Vec, int Tam) {
 	return sonIguales;
 }
 
-bool hayDosCarasIgualesYSonAses(int Vec, int Tam) {
+bool hayDosCarasIgualesYSonAses(int Vec[], int Tam) {
 	bool sonDosIguales = false;
 	bool sonAses = false;
 	bool sonTodasIguales = false;
@@ -135,7 +103,7 @@ bool hayDosCarasIgualesYSonAses(int Vec, int Tam) {
 	return sonDosIguales && sonAses && !sonTodasIguales;
 }
 
-bool ningunaEsAs(int Vec, int Tam) {
+bool ningunaEsAs(int Vec[], int Tam) {
 	bool hayUnAs = false;
 	for (int i=0; i<Tam; i++){
 		if(Vec[i] == 1) {
@@ -145,7 +113,7 @@ bool ningunaEsAs(int Vec, int Tam) {
 	return hayUnAs;
 }
 
-bool todasLasCarasSonAses(int Vec, int Tam) {
+bool todasLasCarasSonAses(int Vec[], int Tam) {
 	bool sonAses = true;
 	for (int i=0; i<Tam; i++){
 		if(Vec[i] != 1) {
@@ -155,6 +123,58 @@ bool todasLasCarasSonAses(int Vec, int Tam) {
 	return sonAses;
 }
 
+
+bool ProcesarDados(int Vec[], int Tam, int vecStat[], bool *BanderaTresDatos){
+	int Trufas=0, Oinks=0;
+	bool SiguienteRonda = true;
+	bool puedeElegirSiguienteRonda = true;
+	if(hayUnaCaraDistinta(Vec, Tam) && ningunaEsAs(Vec, Tam)) {
+
+	} else if (sonTodasIgualesEntreSi(Vec, Tam) && ningunaEsAs(Vec, Tam)) {
+
+	} else if (hayUnaCaraDistinta(Vec, Tam) && !ningunaEsAs(Vec, Tam)) {
+
+	} else if (((Tam == 2 && sonTodasIgualesEntreSi(Vec, Tam)) || Tam == 3 && hayDosCarasIgualesYSonAses(Vec, Tam))&& todasLasCarasSonAses(Vec, Tam)) {
+
+	} else if (Tam == 3 && sonTodasIgualesEntreSi(Vec, Tam) && todasLasCarasSonAses(Vec, Tam)) {
+
+	}
+	if (puedeElegirSiguienteRonda) {
+		// ver si elegir siguiente ronda o si no se puede
+		// SiguienteRonda...
+	}
+	return SiguienteRonda;
+}
+bool hayUnaCaraDistinta(int Vec[], int Tam) {
+	bool esDistinta = Vec[0] != Vec[Tam - 1];
+	if (Tam == 3 && !esDistinta) {
+		for (int i = 0; i < Tam - 1; i++){
+			if(Vec[i] != Vec[i+1]) {
+				esDistinta = true;
+			}
+		}
+	}
+	return esDistinta;
+}
+
+void jugarRonda(int vecStat[], bool *BanderaTresDatos) {
+	int DosDados[2]={}, TresDados[3]={};
+	const int Tam2=2, Tam3=3;
+	const int CantJugadores=2;
+	for(int i=0; i<CantJugadores; i++){
+		int SiguienteRonda=false;
+		while(!SiguienteRonda){
+			if (BanderaTresDatos) {
+				TiradaDados(DosDados, Tam2);
+				SiguienteRonda = ProcesarDados(DosDados, Tam2, vecStat, *BanderaTresDatos);
+			} else {
+				TiradaDados(TresDados, Tam3);
+				SiguienteRonda = ProcesarDados(TresDados, Tam3, vecStat, *BanderaTresDatos);
+			}
+		}
+	}
+}
+
 void Jugar(int vecStat1[], int vecStat2[]) {
 	const int Rondas=5;
 	bool BanderaTresDatos = false;
@@ -162,24 +182,6 @@ void Jugar(int vecStat1[], int vecStat2[]) {
 	for (int i=0; i<Rondas; i++){
 		jugarRonda(vecStat1, *BanderaTresDatos);
 		jugarRonda(vecStat2, *BanderaTresDatos);
-	}
-}
-
-void jugarRonda(int vecStat, bool *BanderaTresDatos) {
-	int DosDados[2]={}, TresDados[3]={};
-	const int Tam2=2, Tam3=3;
-	const int CantJugadores=2;
-	for(int i=0; i<CantJugadores; i++){
-		SiguienteRonda=false;
-		while(!SiguienteRonda){
-			if (BanderaTresDatos) {
-				TiradaDados(DosDados, Tam2);
-				SiguienteRonda = ProcesarDados(DosDados, Tam2, vecStat, *BanderaTresDatos);
-			} else {
-				TiradaDados(TresDados, Tam3);
-				SiguienteRonda = ProcesarDados(TresDados Tam3, vecStat, *BanderaTresDatos);
-			}
-		}
 	}
 }
 
