@@ -11,7 +11,7 @@ using namespace std;
 
 
 int main(){
-	int opcion=1, stats1[4]={},  stats2[3]={};
+	int opcion=1, stats1[3]={},  stats2[3]={}, PDV1=0, PDV2=0, trufas1, trufas2, oink1, oink2;
 	// stats = [trufas, oinks, lanzamientos];
 	string Jugador1, Jugador2, jugadorInicial;
 
@@ -51,7 +51,29 @@ int main(){
 		}
 		system("pause");
 	}
+	if (stats1[0]>stats2[0]){
+        PDV1+=5;
+	}
+	else if (stats2[0]>stats1[0]){
+        PDV2+=5;
+	}
+    else {
+        PDV1+=5;
+        PDV2+=5;
+    }
+    oink1=stats1[1]*2;
+    oink2=stats2[1]*2;
 
+    trufas1=stats1[0];
+    trufas2=stats2[0];
+	while (trufas1 >= 50) {
+        trufas1 -= 50;
+        PDV1++;
+        }
+        while (trufas2 >= 50) {
+            trufas2 -= 50;
+            PDV2++;
+        }
 	cout<<endl<<endl;
 	system("pause");
 	return 0;
