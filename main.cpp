@@ -11,7 +11,7 @@ using namespace std;
 
 
 int main(){
-	int opcion=1, stats1[3]={},  stats2[3]={}, PDV1=0, PDV2=0, trufas1, trufas2, oink1, oink2;
+	int opcion=1, stats1[3]={},  stats2[3]={}, PDV1=0, PDV2=0, trufas1, trufas2, oink1, oink2, Cada50[2];
 	// stats = [trufas, oinks, lanzamientos];
 	string Jugador1, Jugador2, jugadorInicial;
 
@@ -37,13 +37,55 @@ int main(){
 				} else {
 					Jugar(stats2, stats1);
 				}
-				// evaluarGanador(stats1, stats2);
+                    if (stats1[0]>stats2[0]){
+                        PDV1+=5;
+                    }
+                    else if (stats2[0]>stats1[0]){
+                        PDV2+=5;
+                    }
+                    else {
+                        PDV1+=5;
+                        PDV2+=5;
+                    }
+                    oink1=stats1[1]*2;
+                    oink2=stats2[1]*2;
+                    trufas1=stats1[0];
+                    trufas2=stats2[0];
+
+                        while (trufas1 >= 50) {
+                            trufas1 -= 50;
+                                PDV1++;
+                        }
+                            while (trufas2 >= 50) {
+                                trufas2 -= 50;
+                                PDV2++;
+                            }
+                            Cada50[0]=PDV1*50;
+                            Cada50[1]=PDV2*50;
+
+                            if(stats1[2]>stats2[2]){
+                                PDV1+=5;
+                            }
+                            else if(stats2[2]>stats1[2]){
+                                PDV2+=5;
+                            }
+                            else {
+                                PDV2+=5;
+                                PDV1+=5;
+                            }
 				break;
 			case 2:
-				// mostrarEstadisticas();
+				if (PDV1>PDV2){
+                    cout<<Jugador1<<PDV1<<" PDV "<<endl;
+				}
+				else if (PDV2>PDV1){
+                    cout<<Jugador2<<PDV2<<" PDV "<<endl;
+				}
 				break;
 			case 3:
-				// mostrarCreditos();
+				cout<<"Creditos: "<<endl;
+				cout<<"Emiliano Ariel Civitillo"<<endl;
+				cout<<"Legajo: 28893"<<endl;
 				break;
 			default:
 				cout<<"No ingreso una opcion valida"<<endl;
@@ -51,29 +93,7 @@ int main(){
 		}
 		system("pause");
 	}
-	if (stats1[0]>stats2[0]){
-        PDV1+=5;
-	}
-	else if (stats2[0]>stats1[0]){
-        PDV2+=5;
-	}
-    else {
-        PDV1+=5;
-        PDV2+=5;
-    }
-    oink1=stats1[1]*2;
-    oink2=stats2[1]*2;
 
-    trufas1=stats1[0];
-    trufas2=stats2[0];
-	while (trufas1 >= 50) {
-        trufas1 -= 50;
-        PDV1++;
-        }
-        while (trufas2 >= 50) {
-            trufas2 -= 50;
-            PDV2++;
-        }
 	cout<<endl<<endl;
 	system("pause");
 	return 0;

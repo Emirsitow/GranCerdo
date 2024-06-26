@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1719093206 source:c:\users\emir\onedrive\escritorio\utn\programacion\trabajos\grancerdo\main.cpp
+1719440529 source:c:\users\emir\onedrive\escritorio\utn\programacion\trabajos\grancerdo\main.cpp
 	<iostream>
 	<cstdlib>
 	<ctime>
@@ -8,7 +8,7 @@
 	<limits>
 	"FuncionesCerdo.h"
 
-1719172391 c:\users\emir\onedrive\escritorio\utn\programacion\trabajos\grancerdo\funcionescerdo.h
+1719440524 c:\users\emir\onedrive\escritorio\utn\programacion\trabajos\grancerdo\funcionescerdo.h
 	<iostream>
 	<cstdlib>
 	<ctime>

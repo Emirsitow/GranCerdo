@@ -123,16 +123,19 @@ bool hayUnaCaraDistinta(int Vec[], int Tam) {
 }
 
 bool ProcesarDados(int Vec[], int Tam, int vecStat1[], int vecStat2[], bool *BanderaTresDatos) {
-    int Trufas = 0, Oinks = 0;
+    int Trufas = 0, Oinks = 0, ContadorRondas;
     char Siono;
     bool SiguienteRonda = true;
     bool puedeElegirSiguienteRonda = true;
     while(puedeElegirSiguienteRonda){
+        ContadorRondas++;
+            if (ContadorRondas>vecStat1[2])
+            vecStat1[2]=ContadorRondas;
         if (hayUnaCaraDistinta(Vec, Tam) && ningunaEsAs(Vec, Tam)) {
             for (int i=0; i<3; i++){
             Trufas+=Vec[i];
             }
-            cout<<"¿Quiere seguir volver a tirar?"<<endl;
+            cout<<"¿Quiere volver a tirar?"<<endl;
             cout<<"S/N"<<endl;
             cin>>Siono;
                 if (Siono=='n'){
@@ -163,7 +166,7 @@ bool ProcesarDados(int Vec[], int Tam, int vecStat1[], int vecStat2[], bool *Ban
         *BanderaTresDatos= true;
         vecStat2[0]= Trufas+vecStat1[0];
         vecStat1[0]=0;
-        cout<<"Te hundiste en el barro y perdiste todo, mala suerte!"<<endl;
+        cout<<"Los puntos que conseguiste son ahora del oponente!"<<endl;
 
     }
 
@@ -195,6 +198,8 @@ void Jugar(int vecStat1[], int vecStat2[]) {
     for (int i = 0; i < Rondas; i++) {
         jugarRonda(vecStat1, vecStat2, &BanderaTresDatos);
         jugarRonda(vecStat2, vecStat1, &BanderaTresDatos);
+        cout<<"Ronda #"<<i+1<<endl;
+
     }
 }
 
